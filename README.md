@@ -35,7 +35,7 @@ pubType       "journal article; citations from index medicus journals; research 
 x <- search_lite( "cites:24520064_MED")
 ## 8 Results
 ```
-`bib_format` uses `authors_etal` and `journal_cite` to format author, year, title and journal and optionally Pubmed IDs and cited by counts into a reference list.  Markdown links are added to journals using the DOI and to PubMed IDs and Cited By counts if displayed.
+`bib_format` uses helper functions `authors_etal` and `journal_cite` to format author, year, title and journal and optionally Pubmed IDs and cited by counts into a reference list.  Markdown links are added to journals using the DOI and to PubMed IDs and Cited By counts if displayed.
 
 
 ```r
