@@ -2,7 +2,7 @@
 ## euPMC
 
 
-Europe PubMed Central ([Europe PMC](http://europepmc.org/About)) contains over 30 million publications and the `euPMC` package uses the [REST services](http://europepmc.org/RestfulWebService) to search and format the XML lite results into a data frame.  Additional functions are used to output reference lists, Javascript DataTables and publication time series. Use `devtools` to install the package from GitHub.
+Europe PubMed Central ([Europe PMC](http://europepmc.org/About)) contains over 30 million publications and the `euPMC` package uses the [REST services](http://europepmc.org/RestfulWebService) to search and format the XML results.  Additional functions are used to output reference lists, Javascript DataTables and publication time series. Use `devtools` to install the package from GitHub.
 
 ```r
 library(devtools)
@@ -10,7 +10,7 @@ install_github("cstubben/euPMC")
 library(euPMC)
 ```
 
-The primary search function is `search_lite` and requires a valid [query string](https://europepmc.org/Help#directsearch), in this example to search for publications with Yersinia pestis virulence in the title and then to download eight papers citing Lathem et al. 2014 in row 7. 
+The main search function is `search_lite` and requires a valid [query string](https://europepmc.org/Help#directsearch), in this example to search for publications with Yersinia pestis virulence in the title and then to download eight papers citing Lathem et al. 2014 in row 7. 
 
 ```r
 yp <- search_lite("title:(Yersinia pestis virulence)")
@@ -81,7 +81,7 @@ The `year_ts` function creates yearly time-series objects using the publication 
 
 ```r
 y <- year_ts(yp)
-plot(y, xlab="Year published", ylab="Citations per year", las=1)
+plot(y, xlab="Year published", ylab="Articles per year", las=1)
 ```
 
 Many time series objects can be combined and then plotted in a single plot or interactive [dygraph](http://cstubben.github.io/genomes/FigS1.html).  In this plot, citations to 65 marine genome publications funded by the Gordon and Betty Moore Foundation are plotted using the `dygraphs` package.  Click the [link](http://cstubben.github.io/genomes/FigS1.html) or image to view the interactive plot. 
