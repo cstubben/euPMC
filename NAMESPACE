@@ -1,0 +1,2 @@
+importFrom("XML", "xmlParse", "xpathSApply", "xmlValue", "xmlToDataFrame")
+exportPattern("^[[:alpha:]]+")
