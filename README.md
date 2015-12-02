@@ -2,7 +2,13 @@
 ## euPMC
 
 
-Europe PubMed Central ([Europe PMC](http://europepmc.org/About)) contains over 30 million publications and the `euPMC` package uses the [REST services](http://europepmc.org/RestfulWebService) to search and format the XML lite results into a data frame.  Additional functions are used to output reference lists, Javascript DataTables and publication time series. 
+Europe PubMed Central ([Europe PMC](http://europepmc.org/About)) contains over 30 million publications and the `euPMC` package uses the [REST services](http://europepmc.org/RestfulWebService) to search and format the XML lite results into a data frame.  Additional functions are used to output reference lists, Javascript DataTables and publication time series. Use `devtools` to install the package from GitHub.
+
+```r
+library(devtools)
+install_github("cstubben/euPMC")
+library(euPMC)
+```
 
 The primary search function is `search_lite` and requires a valid [query string](https://europepmc.org/Help#directsearch), in this example to search for publications with Yersinia pestis virulence in the title and then to download eight papers citing Lathem et al. 2014 in row 7. 
 
@@ -70,7 +76,7 @@ datatable(y, escape = c(1,5),  caption="Publications with Yersinia pestis virule
 
 [![DataTable](DT.png)](http://cstubben.github.io/genomes/yp.html)
 
-The `year_ts` function create yearly time-series objects using the publication year.
+The `year_ts` function creates yearly time-series objects using the publication year.
 
 
 ```r
