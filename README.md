@@ -8,14 +8,8 @@ The primary search function is `search_lite` and requires a valid [query string]
 
 ```r
 yp <- search_lite("title:(Yersinia pestis virulence)")
-156 Results
-```
-
-```r
+## 156 Results
 t(yp[7,])
-```
-
-```
               7                                                                                                                                                 
 pmid          "24520064"                                                                                                                                        
 authorString  "Lathem WW, Schroeder JA, Bellows LE, Ritzert JT, Koo JT, Price PA, Caulfield AJ, Goldman WE."                                                    
@@ -33,7 +27,7 @@ pubType       "journal article; citations from index medicus journals; research 
 
 ```r
 x <- search_lite( "cites:24520064_MED")
-8 Results
+## 8 Results
 ```
 `bib_format` uses `authors_etal` and `journal_cite` to format author, year, title and journal and optionally Pubmed IDs and cited by counts into a reference list.  Markdown links are added to journals using the DOI and to PubMed IDs and Cited By counts if displayed.
 
@@ -74,7 +68,7 @@ y<-DT_format(yp)
 datatable(y, escape = c(1,5),  caption="Publications with Yersinia pestis virulence in the title") 
 ```
 
-[![DataTable](yp.png)](http://cstubben.github.io/genomes/yp.html)
+[![DataTable](DT.png)](http://cstubben.github.io/genomes/yp.html)
 
 The `year_ts` function is used to create yearly time-series objects.
 
@@ -89,4 +83,4 @@ plot(y, xlab="Year published", ylab="Citations per year", las=1,, main="Yersinia
 
 Many time series objects can be combined and then plotted in a single plot or interactive [dygraph]((http://cstubben.github.io/genomes/FigS1.html).  In this plot, citations to 65 marine genome sequences funded by the Gordon and Betty Moore Foundation are plotted using the `dygraphs` package.  Click the [link](http://cstubben.github.io/genomes/FigS1.html) or image to view the interactive plot. 
 
-[![Dygraph](dygraph.png)](http://cstubben.github.io/genomes/FigS1.html)
+[![Dygraph](yp.png)](http://cstubben.github.io/genomes/FigS1.html)
