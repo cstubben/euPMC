@@ -75,10 +75,8 @@ The `year_ts` function create yearly time-series objects using the publication y
 
 ```r
 y <- year_ts(yp)
-plot(y, xlab="Year published", ylab="Citations per year", las=1,, main="Yersinia pestis virulence publications")
+plot(y, xlab="Year published", ylab="Citations per year", las=1)
 ```
-
-![plot of chunk ts](ts.png) 
 
 Many time series objects can be combined and then plotted in a single plot or interactive [dygraph](http://cstubben.github.io/genomes/FigS1.html).  In this plot, citations to 65 marine genome publications funded by the Gordon and Betty Moore Foundation are plotted using the `dygraphs` package.  Click the [link](http://cstubben.github.io/genomes/FigS1.html) or image to view the interactive plot. 
 
