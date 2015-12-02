@@ -70,8 +70,7 @@ datatable(y, escape = c(1,5),  caption="Publications with Yersinia pestis virule
 
 [![DataTable](DT.png)](http://cstubben.github.io/genomes/yp.html)
 
-The `year_ts` function is used to create yearly time-series objects.
-
+The `year_ts` function create yearly time-series objects using the publication year.
 
 
 ```r
@@ -81,6 +80,6 @@ plot(y, xlab="Year published", ylab="Citations per year", las=1,, main="Yersinia
 
 ![plot of chunk ts](ts.png) 
 
-Many time series objects can be combined and then plotted in a single plot or interactive [dygraph]((http://cstubben.github.io/genomes/FigS1.html).  In this plot, citations to 65 marine genome sequences funded by the Gordon and Betty Moore Foundation are plotted using the `dygraphs` package.  Click the [link](http://cstubben.github.io/genomes/FigS1.html) or image to view the interactive plot. 
+Many time series objects can be combined and then plotted in a single plot or interactive [dygraph](http://cstubben.github.io/genomes/FigS1.html).  In this plot, citations to 65 marine genome publications funded by the Gordon and Betty Moore Foundation are plotted using the `dygraphs` package.  Click the [link](http://cstubben.github.io/genomes/FigS1.html) or image to view the interactive plot. 
 
 [![Dygraph](yp.png)](http://cstubben.github.io/genomes/FigS1.html)
