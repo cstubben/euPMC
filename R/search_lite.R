@@ -7,7 +7,11 @@ search_lite <- function(query, page, pageSize=1000, src=TRUE, drop = TRUE){
    if(!missing(page)) url <- paste0(url, "&page=", page)
    doc   <- xmlParse( suppressWarnings( readLines(url)))
    n     <- xpathSApply(doc, "//hitCount", xmlValue)
-   message(n, " Results")
+   if(n==1){
+       message("1 Result")
+   }else{
+       message(n, " Results")
+   }
    if(n == 0){
       NULL
    }else{
@@ -19,7 +23,7 @@ search_lite <- function(query, page, pageSize=1000, src=TRUE, drop = TRUE){
          n2 <- which(is.na(n))
          if(length(n2) > 0){   
              for (j in x1[n2]){
-                 message(" Adding missing column: ", j)
+                # message(" Adding missing column: ", j)
                  x[[ j ]] <- NA_character_
              }
             n <- match(x1, names(x))
