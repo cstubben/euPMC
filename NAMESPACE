@@ -1,2 +1,2 @@
-importFrom("XML", "xmlParse", "xpathSApply", "xmlValue", "xmlToDataFrame")
+importFrom("XML", "htmlParse", "xmlParse", "readHTMLTable", "xpathSApply", "xmlGetAttr", "xmlValue", "getNodeSet")
 exportPattern("^[[:alpha:]]+")

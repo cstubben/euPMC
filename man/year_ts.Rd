@@ -2,12 +2,11 @@
 \alias{year_ts}
 \title{  Publication year time series }
 \description{ Create a time-series object from publication years }
-\usage{ year_ts(x, start, end, sum = FALSE)  }
+\usage{ year_ts(x, start, end)  }
 \arguments{
   \item{x}{ a vector of years, or optionally PMC search results with pubYear}
   \item{start}{ year of first observation, default minimum year in series }
   \item{end}{  year of last observation, default today's year  }
-  \item{sum}{  return cumulative sum of pulbications }
 }
 %\details{  }
 \value{ a time-series object }

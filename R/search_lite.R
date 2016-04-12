@@ -1,10 +1,12 @@
-search_lite <- function(query, page, pageSize=1000, src=TRUE, drop = TRUE){
-   if(src) query <- paste0("(", query, ") AND SRC:MED")
-   query <- gsub(" ", "%20", query)  
+search_lite <- function(query, page, pageSize=1000, src=TRUE, drop = TRUE, showURL=FALSE){
+    if(src) query <- paste0("(", query, ") AND SRC:MED")
+    query <- gsub(" ", "+", query)
    url   <- paste0("http://www.ebi.ac.uk/europepmc/webservices/rest/search/query=", query)
     url <- paste0(url, "&resulttype=lite") 
    url <- paste0(url, "&pageSize=", pageSize)
    if(!missing(page)) url <- paste0(url, "&page=", page)
+     url <- URLencode( url )   
+   if(showURL)  message(url)   
    doc   <- xmlParse( suppressWarnings( readLines(url)))
    n     <- xpathSApply(doc, "//hitCount", xmlValue)
    if(n==1){

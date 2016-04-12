@@ -2,7 +2,7 @@
 ## euPMC
 
 
-Europe PubMed Central ([Europe PMC](http://europepmc.org/About)) contains over 30 million citations in the biomedical literature. The `euPMC` package uses the [REST services](http://europepmc.org/RestfulWebService) to search the data and format the XML lite results.  Additional functions are used to output reference lists, Javascript DataTables and publication time series. Use `devtools` to install the package from GitHub.
+Europe PubMed Central ([Europe PMC](http://europepmc.org/About)) contains over 30 million citations from the biomedical literature. The `euPMC` package uses the [REST services](http://europepmc.org/RestfulWebService) to search the data and format the XML lite results.  Additional functions are used to output reference lists, Javascript DataTables and publication time series. Use `devtools` to install the package from GitHub.
 
 ```r
 library(devtools)
