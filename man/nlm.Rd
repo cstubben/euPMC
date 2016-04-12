@@ -29,7 +29,7 @@ Free and open access columns were added from the PMC Journal List at Europe PMC 
 \examples{
 data(nlm)
 table(nlm$open)
-subset(nlm, grepl("Heart Diseases", mesh) , 2:5)
-
+subset(nlm, grepl("Heart Diseases", mesh) )
+table2(unlist(strsplit(nlm$mesh, "; ")))
 }
 \keyword{datasets}
