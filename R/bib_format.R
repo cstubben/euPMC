@@ -14,10 +14,11 @@ bib_format <- function(x, authors=3, issue=TRUE, links=FALSE, cited=FALSE, pmid=
        x$citedByCount <- ifelse(x$citedByCount == 0, 0,
                  paste('[', x$citedByCount, '](http://europepmc.org/search?query=cites%3A', x$pmid, '_MED)', sep=""))
       x$pmid <- paste0('[', x$pmid, '](http://europepmc.org/abstract/MED/', x$pmid, ')' )
-      journal <-  ifelse(is.na(x$DOI), journal, paste0('[', journal, '](http://dx.DOI.org/', x$DOI, ')') ) 
+      journal <-  ifelse(is.na(x$doi), journal, paste0('[', journal, '](http://dx.doi.org/', x$doi, ')') ) 
    }
     ## ADD additional formats as option?
-    y <-  paste0(authors, " ", year, ". ", title, " ", journal, ".")
+    y <-  paste0(authors, " ", year, ". ", title, " ", journal)
+    
     #  year in parentheses or journal in Markdown italics
      # y <-  paste0(authors, " (", year, "). ", title, " ", journal, ".")
     #  y <-  paste0(authors, " ", year, ". ",   title, " *", journal, "*.")

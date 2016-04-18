@@ -3,12 +3,12 @@
 \title{ Search the Europe PubMed Central }
 \description{  Search the Europe PMC Rest Service and parse the lite XML resulttype  }
 \usage{
-search_lite(query, page, pageSize = 1000, src = TRUE, drop = TRUE)
+search_lite(query, page, limit = 1000, src = TRUE, drop = TRUE)
 }
 \arguments{
   \item{query}{ a valid query string }
   \item{page}{ results page, default 1}
-  \item{pageSize}{ number of articles, default is maximum allowable 1000 }
+  \item{limit}{ number of articles, default is maximum allowable 1000 }
   \item{src}{ add SRC:MED to query to return articles with Pubmed IDs  }  
   \item{drop}{ Drop hasBook, hasPDF and other logical "Y" or "N" columns, see details  }
 }

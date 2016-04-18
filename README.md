@@ -1,45 +1,74 @@
 
 ## euPMC
 
-
-Europe PubMed Central ([Europe PMC](http://europepmc.org/About)) contains over 30 million citations from the biomedical literature. The `euPMC` package uses the [REST services](http://europepmc.org/RestfulWebService) to search the data and format the XML lite results.  Additional functions are used to output reference lists, Javascript DataTables and publication time series. Use `devtools` to install the package from GitHub.
+ The `euPMC` package formats the `epmc_search` results from [rebi](https://github.com/ropensci/rebi) and outputs Markdown reference lists, Javascript DataTables, and publication time series. Use `devtools` to install the packages from GitHub.
 
 ```r
 library(devtools)
+install_github("njahn82/rebi")
 install_github("cstubben/euPMC")
+
+```
+You can find a detailed description of valid [query strings](https://europepmc.org/Help#directsearch) at Europe PMC. In this first example, search for  Yersinia pestis virulence in the title with a PubMed id (in MEDLINE).   Also, the current version of `epmc_search` returns a list with number of hits and the result table, and since all the functions in `euPMC` require the data.frame, drop hit count.
+
+
+```r
+library(rebi)
 library(euPMC)
+
+yp <- epmc_search("title:(Yersinia pestis virulence) AND src:MED", 1000)$data
+## 160 records found
+
+t(yp[yp$pmid %in% 24520064,])
+                     10                                                                                                                                                
+id                    "24520064"                                                                                                                                        
+source                "MED"                                                                                                                                             
+pmid                  "24520064"                                                                                                                                        
+title                 "Posttranscriptional regulation of the Yersinia pestis cyclic AMP receptor protein Crp and impact on virulence."                                  
+authorString          "Lathem WW, Schroeder JA, Bellows LE, Ritzert JT, Koo JT, Price PA, Caulfield AJ, Goldman WE."                                                    
+journalTitle          "MBio"                                                                                                                                            
+journalVolume         "5"                                                                                                                                               
+pubYear               "2014"                                                                                                                                            
+journalIssn           "2150-7511"                                                                                                                                       
+pageInfo              "e01038-13"                                                                                                                                       
+pubType               "journal article; citations from index medicus journals; research support, non-u.s. gov't; research support, n.i.h., extramural; research-article"
+inEPMC                "Y"                                                                                                                                               
+inPMC                 "Y"                                                                                                                                               
+hasPDF                "Y"                                                                                                                                               
+hasBook               "N"                                                                                                                                               
+hasSuppl              "N"                                                                                                                                               
+citedByCount          "8"                                                                                                                                               
+hasReferences         "Y"                                                                                                                                               
+hasTextMinedTerms     "Y"                                                                                                                                               
+hasDbCrossReferences  "Y"                                                                                                                                               
+hasLabsLinks          "N"                                                                                                                                               
+epmcAuthMan           "N"                                                                                                                                               
+hasTMAccessionNumbers "N"                                                                                                                                               
+luceneScore           NA                                                                                                                                                
+doi                   NA                                                                                                                                                
+pmcid                 "PMC3950509"                                                                                                                                      
+issue                 "1"                                                                                                                                               
+isOpenAccess          "Y"      
 ```
 
-The main search function is `search_lite` and requires a valid [query string](https://europepmc.org/Help#directsearch), in this example to search for publications with Yersinia pestis virulence in the title and then to download eight papers citing Lathem et al. 2014 in row 7. 
+
+The next query downloads the eight papers citing Lathem et al. 2014 above. 
+
+
 
 ```r
-yp <- search_lite("title:(Yersinia pestis virulence)")
-## 156 Results
-t(yp[7,])
-              7                                                                                                                                                 
-pmid          "24520064"                                                                                                                                        
-authorString  "Lathem WW, Schroeder JA, Bellows LE, Ritzert JT, Koo JT, Price PA, Caulfield AJ, Goldman WE."                                                    
-pubYear       "2014"                                                                                                                                            
-title         "Posttranscriptional regulation of the Yersinia pestis cyclic AMP receptor protein Crp and impact on virulence."                                  
-journalTitle  "MBio"                                                                                                                                            
-journalVolume "5"                                                                                                                                               
-issue         "1"                                                                                                                                               
-pageInfo      "e01038-13"                                                                                                                                       
-citedByCount  "8"                                                                                                                                               
-pmcid         "PMC3950509"                                                                                                                                      
-DOI           NA                                                                                                                                                
-pubType       "journal article; citations from index medicus journals; research support, non-u.s. gov't; research support, n.i.h., extramural; research-article"
+x <- epmc_search( "cites:24520064_MED")$data
+## 8 records found
 ```
 
-```r
-x <- search_lite( "cites:24520064_MED")
-## 8 Results
-```
 `bib_format` uses helper functions `authors_etal` and `journal_cite` to format author, year, title and journal and optionally Pubmed IDs and cited by counts into a reference list.  Markdown links are added to journals using the DOI and to PubMed IDs and Cited By counts if displayed.
 
 
 ```r
-strwrap(bib_format(x, number=TRUE, links=TRUE), width=100, exdent=3)
+bib_format(x)
+# add links to journal, cited by counts and PMID
+bib_format(x, number=TRUE, pmid=TRUE, cited =TRUE, links=TRUE)
+cat(strwrap(bib_format(x, number=TRUE), width=100, exdent=3), sep="\n")
 ```
 
 1. Zimbler DL, Schroeder JA, Eddy JL, Lathem WW. 2015. Early emergence of Yersinia pestis as a
