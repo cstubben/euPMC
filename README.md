@@ -1,7 +1,7 @@
 
 ## euPMC
 
- The `euPMC` package formats the `epmc_search` results from [rebi](https://github.com/ropensci/rebi) and outputs Markdown reference lists, Javascript DataTables, and publication time series. Use `devtools` to install the packages from GitHub.
+ The `euPMC` package formats `epmc_search` results from [rebi](https://github.com/ropensci/rebi) and outputs Markdown reference lists, Javascript DataTables, and publication time series. Use `devtools` to install the packages from GitHub.
 
 ```r
 library(devtools)
@@ -9,7 +9,7 @@ install_github("njahn82/rebi")
 install_github("cstubben/euPMC")
 
 ```
-You can find a detailed description of valid [query strings](https://europepmc.org/Help#directsearch) at Europe PMC. In this first example, search for  Yersinia pestis virulence in the title with a PubMed id (in MEDLINE).   Also, the current version of `epmc_search` returns a list with number of hits and the result table, and since all the functions in `euPMC` require the data.frame, drop hit count.
+You can find a detailed description of valid [query strings](https://europepmc.org/Help#directsearch) at Europe PMC. In this first example, search for *Yersinia pestis* virulence in the title with a PubMed id (in MEDLINE).   Also, the current version of `epmc_search` returns a list with number of hits and the result table, and since all the functions in `euPMC` require the data.frame, drop hit count.
 
 
 ```r
@@ -66,9 +66,8 @@ x <- epmc_search( "cites:24520064_MED")$data
 
 ```r
 bib_format(x)
-# add links to journal, cited by counts and PMID
 bib_format(x, number=TRUE, pmid=TRUE, cited =TRUE, links=TRUE)
-cat(strwrap(bib_format(x, number=TRUE), width=100, exdent=3), sep="\n")
+cat(strwrap(bib_format(x, number=TRUE, links=TRUE), width=100, exdent=3), sep="\n")
 ```
 
 1. Zimbler DL, Schroeder JA, Eddy JL, Lathem WW. 2015. Early emergence of Yersinia pestis as a
