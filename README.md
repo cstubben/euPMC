@@ -9,7 +9,7 @@ install_github("njahn82/rebi")
 install_github("cstubben/euPMC")
 
 ```
-You can find a detailed description of search fields and example queries at [Europe PMC](https://europepmc.org/Help#directsearch). In the first example, we are searching for *Yersinia pestis* virulence in the title from MEDLINE sources to avoid duplicates.   The `epmc_hits` function returns the number of hits, which can then be used to adjust the default limit of 25 results in `epmc_search`.
+A detailed description of search fields and example queries at available from the Europe PMC [help pages](https://europepmc.org/Help#directsearch). The first example searches for *Yersinia pestis* virulence in the title from MEDLINE sources to avoid duplicates.   The `epmc_hits` function returns the number of hits, which can then be used to adjust the default limit of 25 results in `epmc_search`.
 
 
 ```r
