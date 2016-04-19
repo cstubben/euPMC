@@ -14,7 +14,7 @@
     \item{\code{country}}{ country = Country tag}
     \item{\code{language}}{ primary language = Language[@LangType="Primary"] tag }
     \item{\code{year}}{ first publication year = PublicationFirstYear tag }
-    \item{\code{mesh}}{ MeSH terms = MeshHeading/DescriptorName tag } 
+    \item{\code{mesh}}{ MeSH terms = MeshHeading/DescriptorName tags } 
     \item{\code{current}}{ Currently indexed in MEDLINE = IndexingSourceName[@IndexingStatus="Currently-indexed"] tag matches MEDLINE }
 
   }

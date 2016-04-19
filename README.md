@@ -9,14 +9,18 @@ install_github("njahn82/rebi")
 install_github("cstubben/euPMC")
 
 ```
-You can find a detailed description of valid [query strings](https://europepmc.org/Help#directsearch) at Europe PMC. In this first example, search for *Yersinia pestis* virulence in the title with a PubMed id (in MEDLINE).   Also, the current version of `epmc_search` returns a list with number of hits and the result table, and since all the functions in `euPMC` require the data.frame, drop hit count.
+You can find a detailed description of search fields and example queries at [Europe PMC](https://europepmc.org/Help#directsearch). In this first example, search for *Yersinia pestis* virulence in the title in MEDLINE.   The `epmc_hits` function returns the number of hits, which can then be used to adjust the default limit of 25 results in `epmc_search`.
 
 
 ```r
 library(rebi)
 library(euPMC)
 
-yp <- epmc_search("title:(Yersinia pestis virulence) AND src:MED", 1000)$data
+query <- "title:(Yersinia pestis virulence) AND src:MED"
+epmc_hits(query)
+[1] 160
+
+yp <- epmc_search(query, limit=200)
 ## 160 records found
 
 t(yp[yp$pmid %in% 24520064,])
@@ -57,7 +61,7 @@ The next query downloads the eight papers citing Lathem et al. 2014 above.
 
 
 ```r
-x <- epmc_search( "cites:24520064_MED")$data
+x <- epmc_search( "cites:24520064_MED")
 ## 8 records found
 ```
 
@@ -115,3 +119,52 @@ plot(y, xlab="Year published", ylab="Articles per year", las=1)
 Many time series objects can be combined and then plotted in a single plot or interactive [dygraph](http://cstubben.github.io/genomes/FigS1.html).  In this plot, citations to 65 marine genome publications funded by the Gordon and Betty Moore Foundation are plotted using the `dygraphs` package.  Click the [link](http://cstubben.github.io/genomes/FigS1.html) or image to view the interactive plot. 
 
 [![Dygraph](yp.png)](http://cstubben.github.io/genomes/FigS1.html)
+
+
+The final query returns publications with the species *Waddlia chondrophila* in the abstract.  `table2` is a wrapper for `table` and returns  sorted counts as a data.frame.
+
+```
+query <- 'abstract:"Waddlia chondrophila" AND SRC:MED'
+epmc_hits(query)
+[1] 63
+
+wc <- epmc_search(query, limit =100)
+table2(wc$journalTitle)
+                                n
+Microbes Infect                 8
+PLoS One                        6
+Emerg Infect Dis                4
+FEMS Immunol Med Microbiol      3
+J Vet Diagn Invest              3
+Microbiology                    3
+New Microbes New Infect         3
+Vet Microbiol                   3
+Clin Microbiol Infect           2
+Eur J Clin Microbiol Infect Dis 2
+```
+
+The package also includes a list of journals currently or previously indexed in MEDLINE in the NLM catalog at NCBI.  This table includes MeSH terms assigned to the journal, which can be used to summarize the publications about *Waddlia chondrophila*  (which can be considered a new emerging zoonotic pathogen based on the journal sources).
+
+```
+data(nlm)
+
+n <- match(wc$journalTitle, nlm$ta)
+# one journal not indexed in MEDLINE
+table(wc$journalTitle[which(is.na(n))])
+
+New Microbes New Infect 
+                      3 
+
+table2(unlist(strsplit(nlm$mesh[n], "; ")))
+                              n
+Microbiology                 21
+Communicable Diseases        13
+Infection                    13
+Immunity                      9
+Medicine                      6
+Science                       6
+Veterinary Medicine           6
+Animal Diseases               4
+Communicable Disease Control  4
+Microbiological Phenomena     4
+
