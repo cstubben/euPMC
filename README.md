@@ -9,7 +9,7 @@ install_github("njahn82/rebi")
 install_github("cstubben/euPMC")
 
 ```
-You can find a detailed description of search fields and example queries at [Europe PMC](https://europepmc.org/Help#directsearch). In this first example, search for *Yersinia pestis* virulence in the title in MEDLINE.   The `epmc_hits` function returns the number of hits, which can then be used to adjust the default limit of 25 results in `epmc_search`.
+You can find a detailed description of search fields and example queries at [Europe PMC](https://europepmc.org/Help#directsearch). In the first example, we are searching for *Yersinia pestis* virulence in the title from MEDLINE sources to avoid duplicates.   The `epmc_hits` function returns the number of hits, which can then be used to adjust the default limit of 25 results in `epmc_search`.
 
 
 ```r
@@ -56,7 +56,7 @@ isOpenAccess          "Y"
 ```
 
 
-The next query downloads the eight papers citing Lathem et al. 2014 above. 
+The next query downloads eight papers citing Lathem et al. 2014 above. 
 
 
 
@@ -65,7 +65,7 @@ x <- epmc_search( "cites:24520064_MED")
 ## 8 records found
 ```
 
-`bib_format` uses helper functions `authors_etal` and `journal_cite` to format author, year, title and journal and optionally Pubmed IDs and cited by counts into a reference list.  Markdown links are added to journals using the DOI and to PubMed IDs and Cited By counts if displayed.
+`bib_format` uses helper functions `authors_etal` and `journal_cite` to format author, year, title and journal and optionally add Pubmed IDs and cited by counts into a reference list.  Markdown links are added to journals, PubMed IDs and Cited By counts if displayed.
 
 
 ```r
@@ -143,7 +143,7 @@ Clin Microbiol Infect           2
 Eur J Clin Microbiol Infect Dis 2
 ```
 
-The package also includes a list of journals currently or previously indexed in MEDLINE in the NLM catalog at NCBI.  This table includes MeSH terms assigned to the journal, which can be used to summarize the publications about *Waddlia chondrophila*  (which can be considered a new emerging zoonotic pathogen based on the journal sources).
+The package also includes a list of journals currently or previously indexed in MEDLINE in the NLM catalog at NCBI.  This table includes MeSH terms assigned to the journal, which can be used to summarize the publications about *Waddlia chondrophila*  (which could be considered a new emerging zoonotic pathogen based on the journal sources).
 
 ```
 data(nlm)
@@ -151,7 +151,6 @@ data(nlm)
 n <- match(wc$journalTitle, nlm$ta)
 # one journal not indexed in MEDLINE
 table(wc$journalTitle[which(is.na(n))])
-
 New Microbes New Infect 
                       3 
 
