@@ -1,34 +1,32 @@
 \name{nlm}
 \alias{nlm}
 \docType{data}
-\title{ Journals currently indexed in the NLM Catalog at NCBI }
+\title{ Journals currently or previously indexed in MEDLINE  }
 \description{
-  Titles, abbreviations, MeSH terms, access and other details of journals currently indexed in the NLM Catalog 
+  Titles, abbreviations, MeSH terms and other details of journals currently or previously indexed in the NLM Catalog at NCBI
 }
 \usage{data("nlm")}
 \format{
-  A data frame with 5631 observations on the following 8 variables.
+  A data frame with 14982 observations on the following 7 variables.
   \describe{
-    \item{\code{ta}}{ title abbreviation}
-    \item{\code{title}}{ journal title}
-    \item{\code{country}}{ country}
-    \item{\code{language}}{ primary language}
-    \item{\code{year}}{ first publication year}
-    \item{\code{mesh}}{ MeSH terms}
-    \item{\code{free}}{ Free to read in PMC }
-    \item{\code{open}}{ Open access in PMC }
+    \item{\code{ta}}{ title abbreviation = MedlineTA tag}
+    \item{\code{title}}{ journal title = TitleMain/Title tag}
+    \item{\code{country}}{ country = Country tag}
+    \item{\code{language}}{ primary language = Language[@LangType="Primary"] tag }
+    \item{\code{year}}{ first publication year = PublicationFirstYear tag }
+    \item{\code{mesh}}{ MeSH terms = MeshHeading/DescriptorName tag } 
+    \item{\code{current}}{ Currently indexed in MEDLINE = IndexingSourceName[@IndexingStatus="Currently-indexed"] matches MEDLINE }
+
   }
 }
-\details{ Search results from the NLM Catalog at NCBI using "currentlyindexed" on April 12, 2015.  
-Free and open access columns were added from the PMC Journal List at Europe PMC \url{http://europepmc.org/journalList}
-}
+\details{ XML search results from the NLM Catalog at NCBI using "reportedmedline" on April 18, 2015 }
 \source{
 \url{http://www.ncbi.nlm.nih.gov/nlmcatalog}
 }
 %\references{ }
 \examples{
 data(nlm)
-table(nlm$open)
+table(nlm$current)
 subset(nlm, grepl("Heart Diseases", mesh) )
 table2(unlist(strsplit(nlm$mesh, "; ")))
 }
