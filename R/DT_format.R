@@ -6,10 +6,10 @@ DT_format <- function(x, authors=3, issue=TRUE, links=TRUE ){
 
    # hyperlinks
    if(links){
-       x$citedByCount <- ifelse(x$citedByCount == 0, 0, paste('<a href="http://europepmc.org/search?query=cites%3A', x$pmid, '_MED">', x$citedByCount,  '</a>', sep=""))
-       x$pmid <- paste0('<a href="http://europepmc.org/abstract/MED/', x$pmid, '">', x$pmid,  '</a>')
+       x$citedByCount <- ifelse(x$citedByCount == 0, 0, paste('<a href="http://europepmc.org/search?query=cites%3A', x$pmid, '_MED" target="_blank">', x$citedByCount,  '</a>', sep=""))
+       x$pmid <- paste0('<a href="http://europepmc.org/abstract/MED/', x$pmid, '" target="_blank">', x$pmid,  '</a>')
   # some dois missing
-    x$journal <-  ifelse(is.na(x$doi), x$journal, paste0('<a href="http://dx.doi.org/', x$doi, '">', x$journal,  '</a>') )
+    x$journal <-  ifelse(is.na(x$doi), x$journal, paste0('<a href="http://dx.doi.org/', x$doi, '" target="_blank">', x$journal,  '</a>') )
       
    }
    x <- x[,c("pmid", "authorString", "pubYear", "title", "journal", "citedByCount")]
