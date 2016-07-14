@@ -1,9 +1,7 @@
 #' Search Europe PMC core and get article citations and MeSH terms
 
-search_core <- function(query, page, limit=1000, MED=TRUE, showURL=FALSE){
+search_core <- function(query, page, limit=1000){
 
-   if(MED) query <- paste0("(", query, ") AND SRC:MED")
- 
    query <- gsub(" ", "+", query)
    url   <- paste0("http://www.ebi.ac.uk/europepmc/webservices/rest/search/query=", query)
    url <- paste0(url, "&resulttype=core") 
@@ -11,7 +9,6 @@ search_core <- function(query, page, limit=1000, MED=TRUE, showURL=FALSE){
    if(!missing(page)) url <- paste0(url, "&page=", page)
    url <- URLencode( url )   
 
-   if(showURL)  message(url)   
    doc   <- xmlParse( suppressWarnings( readLines(url)))
 
    n    <- xpathSApply(doc, "//hitCount", xmlValue)
@@ -42,9 +39,14 @@ search_core <- function(query, page, limit=1000, MED=TRUE, showURL=FALSE){
                                        paste(ta, " ", volume, "(", issue, "):", pages, sep =""))
       journal <- gsub(":NA$", "", journal )  # missing pages
 
+
+      citedBy <- sapply(x, xpath2, "./citedByCount")
+      published <- sapply(x, xpath2, "./firstPublicationDate")
+      doi <- sapply(x, xpath2, "./doi")
+
       mesh <- sapply(x, mesh2)
       # keep ta for matching to nlm
-      y <- data.frame( pmid, authors, year, title, journal, ta, mesh, stringsAsFactors=FALSE)
+      y <- data.frame( pmid, authors, year, title, journal, citedBy, published, doi, ta, mesh, stringsAsFactors=FALSE)
 
    }
 }
