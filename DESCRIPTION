@@ -1,12 +1,10 @@
 Package: euPMC
 Type: Package
-Title: tools for searching Europe Pubmed Central
-Version: 1.0.3
-Date: 2015-12-01
+Title: additional tools for working with Europe Pubmed Central
+Version: 1.0.4
+Date: 2016-07-14
 Author: Chris Stubben
 Maintainer: Chris Stubben <stubben@lanl.gov>
-Suggests: DT, dygraphs
+Suggests: europepmc, XML, DT, dygraphs
 License: GPL-3
-Description: tools for searching Europe Pubmed Central's RESTful Web Service
-NeedsCompilation: no
-Packaged: 2015-12-15 16:58:14 UTC; Chris
+Description: additional tools for working with the europepmc package

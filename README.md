@@ -1,11 +1,11 @@
 
 ## euPMC
 
- The `euPMC` package formats `epmc_search` results from [rebi](https://github.com/ropensci/rebi) and outputs Markdown reference lists, Javascript DataTables, and publication time series. Use `devtools` to install the packages from GitHub.
+ The `euPMC` package formats `epmc_search` results from [europepmc](https://github.com/ropensci/europepmc) and outputs Markdown reference lists, Javascript DataTables, and publication time series. Use `devtools` to install the packages from GitHub.
 
 ```r
 library(devtools)
-install_github("njahn82/rebi")
+install_github("ropensci/europepmc")
 install_github("cstubben/euPMC")
 
 ```
@@ -13,7 +13,7 @@ A detailed description of search fields and example queries are available from t
 
 
 ```r
-library(rebi)
+library(europePMC)
 library(euPMC)
 
 query <- "title:(Yersinia pestis virulence) AND src:MED"
