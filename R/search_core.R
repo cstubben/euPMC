@@ -47,6 +47,9 @@ search_core <- function(query, page, limit=1000){
       mesh <- sapply(x, mesh2)
       # keep ta for matching to nlm
       y <- data.frame( pmid, authors, year, title, journal, citedBy, published, doi, ta, mesh, stringsAsFactors=FALSE)
+      attr(y, "hit_count") <- n
+      y
+
 
    }
 }
