@@ -2,7 +2,6 @@
 
 search_core <- function(query, page, limit=1000){
 
-   query <- gsub(" ", "+", query)
    url   <- paste0("http://www.ebi.ac.uk/europepmc/webservices/rest/search/query=", query)
    url <- paste0(url, "&resulttype=core") 
    url <- paste0(url, "&pageSize=", limit)
