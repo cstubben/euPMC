@@ -8,7 +8,7 @@ format_mesh<-function( x){
    y <- unlist( strsplit(x, "; "))
    y<- y[y!="NA"]
 if(length(y)==0){
-   y<-NA
+   y<-data.frame(MeSH="No MeSH terms assigned")
 }else{
    z<- ifelse(grepl("\\*", y), "Major", "Total")
    y <- gsub("\\*", "", y)
