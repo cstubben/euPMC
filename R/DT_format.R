@@ -1,21 +1,50 @@
-DT_format <- function(x, authors=3, issue=TRUE, links=TRUE ){
-   x$authorString <- authors_etal( x$authorString,  authors)
-   x$title <- gsub("\\.$", "", x$title)
+#' Format a Javascript DataTable
+#'
+#' Format a data.frame to display using datatable in the DT library
+#'
+#' @param x Europe PMC search results
+#' @param authors Number of authors to display before adding et al.
+#' @param issue Include issue number with journal citation
+#' @param links Add html links to PubMed ID, Journal, and Cited by counts, default TRUE
+#'
+#' @return a data.frame with pmid, authors, year, title, journal and cited by counts
+#' @note Requires the \code{DT} package for displaying tables
+#' @author Chris Stubben
+#'
+#' @examples
+#' data(yp)
+#' DT_format(yp[6:8,])
+#' \dontrun{
+#' x1 <- DT_format(yp)
+#' library(DT)
+#' datatable(x1, escape = c(1,5) , caption= "Publications with Yersinia pestis virulence in title")
+#' }
+#' @export
+DT_format <- function(x, authors=3, issue=FALSE, links=TRUE ){
+   n1 <- grep("^author", names(x) )  #authorString or authors
+   authors <- authors_etal( x[[n1]], authors=authors)
+
+   n1 <- grep("pubYear|year", names(x) )  #pubYear or year
+    year <- x[[n1]]
+    n1 <- grep("^title", names(x) )
+    title <- x[[n1]]
+
    #combine journal volume pages
-   x$journal <- journal_cite(x, issue)
+   journal <- journal_cite(x, issue=issue)
+
+   n1 <- grep("cited", names(x) )
+   citedBy <- x[[n1]]
+   pmid <- x$pmid
 
    # hyperlinks
    if(links){
-       x$citedByCount <- ifelse(x$citedByCount == 0, 0, paste('<a href="http://europepmc.org/search?query=cites%3A', x$pmid, '_MED" target="_blank">', x$citedByCount,  '</a>', sep=""))
-       x$pmid <- paste0('<a href="http://europepmc.org/abstract/MED/', x$pmid, '" target="_blank">', x$pmid,  '</a>')
+       citedBy <- ifelse(citedBy == 0, 0, paste('<a href="http://europepmc.org/search?query=cites%3A',
+                                           x$pmid, '_MED" target="_blank">', citedBy,  '</a>', sep=""))
+       pmid <- paste0('<a href="http://europepmc.org/abstract/MED/', pmid, '" target="_blank">', pmid,  '</a>')
   # some dois missing
-    x$journal <-  ifelse(is.na(x$doi), x$journal, paste0('<a href="http://dx.doi.org/', x$doi, '" target="_blank">', x$journal,  '</a>') )
-      
+    journal <-  ifelse(is.na(x$doi), journal, paste0('<a href="http://dx.doi.org/', x$doi, '" target="_blank">', journal,  '</a>') )
+
    }
-   x <- x[,c("pmid", "authorString", "pubYear", "title", "journal", "citedByCount")]
-   names(x) <- c("pmid", "authors", "year", "title", "journal", "citedBy")
+   x <- data.frame( pmid, authors, year, title, journal, citedBy)
    x
 }
-
-
-
