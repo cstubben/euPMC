@@ -40,7 +40,7 @@ bib_format <- function(x, authors=3, issue=TRUE, links=FALSE, cited=FALSE, pmid=
        citedBy <- ifelse(citedBy == 0, 0,
                  paste('[', citedBy, '](http://europepmc.org/search?query=cites%3A', x$pmid, '_MED)', sep=""))
        x$pmid <- paste0('[', x$pmid, '](http://europepmc.org/abstract/MED/', x$pmid, ')' )
-      journal <-  ifelse(is.na(x$doi), journal, paste0('[', journal, '](http://dx.doi.org/', x$doi, ')') )
+      journal <-  ifelse(is.na(x$doi), journal, paste0('[', journal, '](https://doi.org/', x$doi, ')') )
    }
     ## ADD additional formats as option?
     y <-  paste0(authors, " ", year, ". ", title, " ", journal)

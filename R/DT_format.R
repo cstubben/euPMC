@@ -42,7 +42,7 @@ DT_format <- function(x, authors=3, issue=FALSE, links=TRUE ){
                                            x$pmid, '_MED" target="_blank">', citedBy,  '</a>', sep=""))
        pmid <- paste0('<a href="http://europepmc.org/abstract/MED/', pmid, '" target="_blank">', pmid,  '</a>')
   # some dois missing
-    journal <-  ifelse(is.na(x$doi), journal, paste0('<a href="http://dx.doi.org/', x$doi, '" target="_blank">', journal,  '</a>') )
+    journal <-  ifelse(is.na(x$doi), journal, paste0('<a href="https://doi.org/', x$doi, '" target="_blank">', journal,  '</a>') )
 
    }
    x <- data.frame( pmid, authors, year, title, journal, citedBy)
