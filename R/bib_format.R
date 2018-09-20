@@ -38,8 +38,13 @@ bib_format <- function(x, authors=3, issue=TRUE, links=FALSE, cited=FALSE, pmid=
    # Markdown links
    if(links){
        citedBy <- ifelse(citedBy == 0, 0,
+<<<<<<< HEAD
                  paste('[', citedBy, '](https://europepmc.org/search?query=cites%3A', x$pmid, '_MED)', sep=""))
        x$pmid <- paste0('[', x$pmid, '](https://europepmc.org/abstract/MED/', x$pmid, ')' )
+=======
+                 paste('[', citedBy, '](http://europepmc.org/search?query=cites%3A', x$pmid, '_MED)', sep=""))
+       x$pmid <- paste0('[', x$pmid, '](http://europepmc.org/abstract/MED/', x$pmid, ')' )
+>>>>>>> 41b7ad8c2e08e737680e4ada3d13d2c4f0888369
       journal <-  ifelse(is.na(x$doi), journal, paste0('[', journal, '](https://doi.org/', x$doi, ')') )
    }
     ## ADD additional formats as option?

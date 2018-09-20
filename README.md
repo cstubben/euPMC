@@ -13,7 +13,7 @@ A detailed description of search fields and example queries are available from t
 
 
 ```r
-library(europePMC)
+library(europepmc)
 library(euPMC)
 
 query <- "title:(Yersinia pestis virulence) AND src:MED"
