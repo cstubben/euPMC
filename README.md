@@ -12,7 +12,8 @@ install_github("ropensci/europepmc")
 install_github("cstubben/euPMC")
 ```
 
-Try searching Europe PMC using the Shiny app to view some example tables and plots.
+Try searching Europe PMC using the Shiny app to view some example tables and plots
+(specific terms like Yersinia pestis virulence with a few hundred matches over many years work best).
 
 https://cstubben.shinyapps.io/euPMC/
 
