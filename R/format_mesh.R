@@ -10,8 +10,8 @@
 #' @author Chris Stubben
 #'
 #' @examples
-#' data(yp)
-#' format_mesh(yp)
+#' data(nlm)
+#' format_mesh( filter(nlm, grepl("Heart", mesh) ))
 #' @export
 
 format_mesh<-function( x){

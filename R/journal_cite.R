@@ -29,7 +29,6 @@ journal_cite <- function( x, n, issue=TRUE){
       }
       if( any(is.na(n))) stop("Cannot match journal, volume, issue, page columns")
    }
-
    if(issue){
       y <- apply(x[,n], 1, function(y) paste(y[1], " ", y[2], "(", y[3], "):", y[4], sep ="") )
       y <- gsub("(NA)", "", y, fixed=TRUE)  # missing issue

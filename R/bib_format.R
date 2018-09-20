@@ -21,20 +21,16 @@
 #' @export
 
 bib_format <- function(x, authors=3, issue=TRUE, links=FALSE, cited=FALSE, pmid=FALSE, number=FALSE){
-    n1 <- grep("^author", names(x) )  #authorString or authors
-    authors <- authors_etal( x[[n1]], authors=authors)
-    #combine journal volume issue pages
-    journal <- journal_cite(x, issue=issue)
-
-
+   n1 <- grep("^author", names(x) )  #authorString or authors
+   authors <- authors_etal( x[[n1]], authors=authors)
+   #combine journal volume issue pages
+   journal <- journal_cite(x, issue=issue)
    n1 <- grep("pubYear|year", names(x) )  #pubYear or year
-    year <- x[[n1]]
-    n1 <- grep("^title", names(x) )
-    title <- x[[n1]]
-
-    n1 <- grep("cited", names(x) )
-    citedBy <- x[[n1]]
-
+   year <- x[[n1]]
+   n1 <- grep("^title", names(x) )
+   title <- x[[n1]]
+   n1 <- grep("cited", names(x) )
+   citedBy <- x[[n1]]
    # Markdown links
    if(links){
        citedBy <- ifelse(citedBy == 0, 0,
