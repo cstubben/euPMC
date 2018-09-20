@@ -20,43 +20,25 @@
 #' @examples
 #' data(nlm)
 #' filter(nlm, grepl("Heart Diseases", mesh) )
-#' sort( table(unlist(strsplit(nlm$mesh, "; "))), decreasing=TRUE)[1:10]
+#' # sort( table(unlist(strsplit(nlm$mesh, "; "))), decreasing=TRUE)[1:10]
+#' tidyr::separate_rows(nlm, mesh, sep="; ") %>% dplyr::count(mesh, sort=TRUE)
 #'
 "nlm"
 
 #' Yersinia pestis virulence publications
 #'
-#' Europe PMC core search results with Yersinia pestis virulence in title
+#' Europe PMC search results with Yersinia pestis virulence in title
 #'
-#' @format A data frame with 160 observations on the following 19 variables.
-#'  \describe{
-#'    \item{pmid}{PubMed ID = pmid tag}
-#'    \item{pmcid}{PubMed Central ID = pmcid tag}
-#'    \item{src}{ source tag }
-#'    \item{doi}{ DOI tag }
-#'    \item{authors}{ authorString tag }
-#'    \item{year}{ pubYear tag }
-#'    \item{title}{ article title tag }
-#'    \item{journal}{ full journal name = journal/title tag }
-#'    \item{nlm_ta}{ journal abbreviation = medlineAbbreviation tag}
-#'    \item{volume}{ journalInfo/volume tag }
-#'    \item{issue}{ journalInfo/issue tag }
-#'    \item{pages}{ pageInfo tag }
-#'    \item{citedby}{ citedByCount tag }
-#'    \item{published}{ firstPublicationDate tag }
-#'    \item{language}{language tag}
-#'    \item{abstract}{abstractText tag}
-#'    \item{mesh}{ MeSH terms including descriptor, qualifier and major topic*}
-#'    \item{keywords }{keyword tags}
-#'    \item{chemicals }{chemical/name tags}
-#'  }
+#' @format A data frame with 148 observations and 26 columns.
 #' @source Europe PMC search
 #' @examples
 #' data(yp)
-#' \dontrun{ yp <- search_core("title:(Yersinia pestis virulence) src:MED")}
+#' yp
 #' t(yp[7,])
 #' bib_format(yp[1:7,])
-#' data.frame(n=sort(table(unlist(strsplit(yp$pubType, "; "))), decreasing=TRUE))
-#' subset(yp, grepl("retracted", pubType))
-#' data.frame(n=sort(table(unlist(strsplit(yp$authorString, ", "))), decreasing=TRUE)[1:15])
+#' tidyr::separate_rows(yp, pubType, sep="; ") %>% dplyr::count(pubType, sort=TRUE)
+#' dplyr::filter(yp[, c(3,6:8,11,14)], grepl("review", pubType))
+#' # remove period and split author string
+#' dplyr::mutate(yp, author = gsub("\\.$", "", authorString)) %>%
+#'  tidyr::separate_rows(author, sep=", ") %>% dplyr::count(author, sort=TRUE)
 "yp"
