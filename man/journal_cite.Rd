@@ -31,4 +31,3 @@ journal_cite(yp[1:5,], issue=FALSE)
 \author{
 Chris Stubben
 }
-

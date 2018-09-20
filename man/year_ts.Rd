@@ -27,10 +27,9 @@ y <- year_ts(yp)
 plot(y, xlab="Year published", ylab="Articles per year", las=1,
     main="Publications with Yersinia pestis virulence in title")
 }
-\author{
-Chris Stubben
-}
 \seealso{
 \code{\link{ts}}
 }
-
+\author{
+Chris Stubben
+}

@@ -4,8 +4,8 @@
 \alias{bib_format}
 \title{Format a bibliography}
 \usage{
-bib_format(x, authors = 3, issue = TRUE, links = FALSE, cited = FALSE,
-  pmid = FALSE, number = FALSE)
+bib_format(x, authors = 3, issue = TRUE, links = FALSE,
+  cited = FALSE, pmid = FALSE, number = FALSE)
 }
 \arguments{
 \item{x}{epmc_search results}
@@ -36,10 +36,9 @@ data(yp)
 bib_format(yp[1:5,])
 cat(strwrap(bib_format(yp[1:5,], number=TRUE, pmid=TRUE), exdent=3), sep="\\n")
 }
-\author{
-Chris Stubben
-}
 \seealso{
 \code{\link{strwrap}} for formatting
 }
-
+\author{
+Chris Stubben
+}

@@ -45,4 +45,3 @@ subset(yp, grepl("retracted", pubType))
 data.frame(n=sort(table(unlist(strsplit(yp$authorString, ", "))), decreasing=TRUE)[1:15])
 }
 \keyword{datasets}
-

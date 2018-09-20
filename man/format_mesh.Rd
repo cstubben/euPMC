@@ -23,4 +23,3 @@ format_mesh(yp)
 \author{
 Chris Stubben
 }
-

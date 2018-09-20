@@ -13,16 +13,14 @@
 #'     \item{language}{ primary language = Language[@LangType="Primary"] tag }
 #'     \item{year}{ PublicationFirstYear tag }
 #'     \item{mesh}{ MeSH terms including descriptor, qualifier and major topic marked with * }
-#'     \item{current}{ Currently indexed in MEDLINE = IndexingSourceName[@IndexingStatus="Currently-indexed"] tag matches MEDLINE }
 #' }
 #'
 #' @source \url{http://www.ncbi.nlm.nih.gov/nlmcatalog}
 #'
 #' @examples
 #' data(nlm)
-#' table(nlm$current)
-#' subset(nlm, grepl("Heart Diseases", mesh) )
-#' table2(unlist(strsplit(nlm$mesh, "; ")))
+#' filter(nlm, grepl("Heart Diseases", mesh) )
+#' sort( table(unlist(strsplit(nlm$mesh, "; "))), decreasing=TRUE)[1:10]
 #'
 "nlm"
 

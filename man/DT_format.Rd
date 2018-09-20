@@ -36,4 +36,3 @@ datatable(x1, escape = c(1,5) , caption= "Publications with Yersinia pestis viru
 \author{
 Chris Stubben
 }
-

@@ -1,12 +1,11 @@
 Package: euPMC
 Type: Package
 Title: Europe Pubmed Central
-Version: 1.1
-Date: 2016-07-28
+Version: 1.2
+Date: 2018-09-20
 Author: Chris Stubben
 Maintainer: Chris Stubben <stubben@lanl.gov>
 Imports:
-    XML,
     dplyr
 Suggests:
     europepmc,
@@ -14,4 +13,5 @@ Suggests:
     dygraphs
 License: GPL-3
 Description: Additional tools for working with the europepmc package.
-RoxygenNote: 5.0.1
+Encoding: UTF-8 
+RoxygenNote: 6.1.0

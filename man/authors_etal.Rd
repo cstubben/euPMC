@@ -29,4 +29,3 @@ authors_etal("Kawasaki S, Mizuguchi K,Sato M, Kono T, Shimizu H.", 2)
 \author{
 Chris Stubben
 }
-
