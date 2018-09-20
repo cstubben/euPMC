@@ -109,8 +109,9 @@ cat(strwrap(bib_format(x, number=TRUE, links=TRUE), width=100, exdent=3), sep="\
 7. Ritzert JT, Lathem WW. 2018. Depletion of Glucose Activates Catabolite Repression during
    Pneumonic Plague. [J Bacteriol 200(11)](https://doi.org/10.1128/jb.00737-17)
 
+<br>
 
-`DT_format` adds html links to PubMed IDs, journal, and cited by counts for displaying
+`DT_format` adds html links to PubMed IDs, journal and cited by counts for displaying
 using the `DT` package.
 
 
