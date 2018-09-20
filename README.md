@@ -1,10 +1,10 @@
 
 ## euPMC
 
- The `euPMC` package formats `epmc_search` results from
- [europepmc](https://github.com/ropensci/europepmc) and outputs Markdown
- reference lists, Javascript DataTables, and publication time series. Use
- `devtools` to install the packages from GitHub.
+The `euPMC` package formats `epmc_search` results from
+[europepmc] and outputs Markdown
+reference lists, Javascript DataTables, and publication time series. Use
+`devtools` to install the packages from GitHub.
 
 ```r
 library(devtools)
@@ -12,8 +12,13 @@ install_github("ropensci/europepmc")
 install_github("cstubben/euPMC")
 ```
 
+Try searching Europe PMC using the Shiny app to view some example tables and plots.
+
+https://cstubben.shinyapps.io/euPMC/
+
+
 A detailed description of search fields and example queries are available from
-the Europe PMC [help pages](https://europepmc.org/Help#directsearch). The first
+the Europe PMC [help pages]. The first
 example searches for *Yersinia pestis* virulence in the title from MEDLINE
 sources (with pubmed IDs).  The `epmc_hits` function returns the number of
 hits, which can then be used to adjust the default limit of 25 results in
@@ -179,3 +184,7 @@ inner_join(wc, nlm, by=c(journalTitle="ta")) %>%
 #10 Communicable Disease Control*     4
 ## ... with 47 more rows
 ```
+
+
+[europepmc]: https://github.com/ropensci/europepmc
+[help pages]: https://europepmc.org/Help#directsearch
